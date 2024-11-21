@@ -1,0 +1,34 @@
+run:
+  timeout: 5m
+  tests: false # exclude file test
+
+# List of Linter
+linters:
+  disable-all: true
+  enable:
+    - cyclop # complexity
+    - errcheck # error handling
+    - nakedret # shadow variable in the function return
+    - funlen # function's lines of code
+
+# Rule of each linters
+linters-settings:
+  cyclop:
+    max-complexity: 30
+    package-average: 10.0
+  errcheck:
+    check-type-assertions: false
+  nakedret:
+    max-func-lines: 0
+  funlen:
+    lines: 100
+    statements: 60
+    ignore-comments: true
+
+# Exclude Rule: disable linter in testing
+issues:
+  exclude_rules:
+    - source: "^func Test"
+      linters:
+        - funlen
+        - cyclop
